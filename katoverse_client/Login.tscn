@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://pixel_border.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/pixelfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Themes/theme_default.tres" type="Theme" id=3]
+[ext_resource path="res://LoginMenu.gd" type="Script" id=4]
+
+[node name="LoginScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -274.0
+margin_top = -222.0
+margin_right = 275.0
+margin_bottom = 222.0
+texture = ExtResource( 1 )
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -32.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label_user" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_right = 485.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = ExtResource( 2 )
+text = "USERNAME"
+clip_text = true
+
+[node name="field_user" type="LineEdit" parent="NinePatchRect/VBoxContainer"]
+margin_top = 36.0
+margin_right = 485.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 0, 48 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+placeholder_text = "_"
+caret_blink = true
+
+[node name="label_password" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_top = 88.0
+margin_right = 485.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "PASSWORD"
+clip_text = true
+
+[node name="field_password" type="LineEdit" parent="NinePatchRect/VBoxContainer"]
+margin_top = 124.0
+margin_right = 485.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 0, 48 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+secret = true
+placeholder_text = "_"
+caret_blink = true
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 176.0
+margin_right = 485.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="btn_login" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 212.0
+margin_right = 485.0
+margin_bottom = 276.0
+rect_min_size = Vector2( 0, 64 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.686275, 0.686275, 0.686275, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+text = "ENTER"
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 280.0
+margin_right = 485.0
+margin_bottom = 312.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="btn_create" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 316.0
+margin_right = 485.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 0, 64 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.686275, 0.686275, 0.686275, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+text = "CREATE ACCOUNT"
+
+[connection signal="button_down" from="NinePatchRect/VBoxContainer/btn_login" to="." method="try_login"]

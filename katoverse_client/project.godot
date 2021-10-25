@@ -1,0 +1,89 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "ClientNode",
+"language": "GDScript",
+"path": "res://server_client_protocol/ClientNode.gd"
+}, {
+"base": "KinematicBody",
+"class": "PathAgent",
+"language": "GDScript",
+"path": "res://Navigation/PathAgent.gd"
+}, {
+"base": "Node",
+"class": "ServerNode",
+"language": "GDScript",
+"path": "res://server_client_protocol/ServerNode.gd"
+} ]
+_global_script_class_icons={
+"ClientNode": "",
+"PathAgent": "",
+"ServerNode": ""
+}
+
+[application]
+
+config/name="kato_client"
+run/main_scene="res://Game.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+WorldClient="*res://Singletons/WorldClient.gd"
+GatewayClient="*res://Singletons/GatewayClient.gd"
+LoginProtocol="*res://Singletons/LoginProtocol.gd"
+MapController="*res://Singletons/MapController.gd"
+ServerTime="*res://Singletons/ServerTime.gd"
+Time="*res://Singletons/Time.gd"
+
+[display]
+
+window/size/width=800
+window/size/height=450
+window/size/test_width=800
+window/size/test_height=450
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[global]
+
+scree=false
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
+[input]
+
+click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+3d_render/layer_1="Environment"
+3d_physics/layer_1="Environment"
+3d_render/layer_2="Entities"
+3d_physics/layer_2="Characters"
+3d_physics/layer_3="Spells"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

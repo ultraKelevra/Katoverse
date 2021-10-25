@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/grass_northwest.obj-03070837deb56042227f76a5fc254713.mesh"
+
+[deps]
+
+files=[ "res://.import/grass_northwest.obj-03070837deb56042227f76a5fc254713.mesh" ]
+
+source_file="res://Environments/models/tiles/grass_northwest.obj"
+dest_files=[ "res://.import/grass_northwest.obj-03070837deb56042227f76a5fc254713.mesh", "res://.import/grass_northwest.obj-03070837deb56042227f76a5fc254713.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

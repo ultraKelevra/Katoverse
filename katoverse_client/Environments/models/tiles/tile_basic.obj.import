@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tile_basic.obj-9704524feb1aaf6489d830214f7d54a7.mesh"
+
+[deps]
+
+files=[ "res://.import/tile_basic.obj-9704524feb1aaf6489d830214f7d54a7.mesh" ]
+
+source_file="res://Environments/models/tiles/tile_basic.obj"
+dest_files=[ "res://.import/tile_basic.obj-9704524feb1aaf6489d830214f7d54a7.mesh", "res://.import/tile_basic.obj-9704524feb1aaf6489d830214f7d54a7.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
