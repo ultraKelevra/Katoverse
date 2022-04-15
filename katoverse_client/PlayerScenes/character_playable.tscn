@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://character_model.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://3rdPersonCharacterController.gd" type="Script" id=2]
+[ext_resource path="res://CameraController.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.155894
+height = 0.344068
+
+[node name="Player" type="KinematicBody"]
+collision_layer = 3
+collision/safe_margin = 0.01
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.35, 0 )
+shape = SubResource( 1 )
+
+[node name="CharacterGraphics" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+
+[node name="SpringArm" type="SpringArm" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.341644, 0.619533 )
+collision_mask = 0
+spring_length = 7.0
+margin = 0.2
+script = ExtResource( 3 )
+
+[node name="Camera" type="Camera" parent="SpringArm"]

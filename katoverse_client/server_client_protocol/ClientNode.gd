@@ -16,6 +16,8 @@ func start_client():
 	custom_multiplayer.set_root_node(self)
 	custom_multiplayer.set_network_peer(network)
 
+func get_peer():
+	return custom_multiplayer.get_network_unique_id()
 
 func _process(delta):
 	if get_custom_multiplayer()==null:

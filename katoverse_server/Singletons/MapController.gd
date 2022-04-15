@@ -1,29 +1,40 @@
 extends Node
 
 
-var processing_players = {}
-var players = {}
-onready var player_prefab = preload("res://Navigation/Player.tscn")
-onready var map_navigation = get_node("/root/ServerSimulation/World/Navigation")
+onready var player_prefab = preload("res://Player/Player.tscn")
+onready var map = get_node("/root/ServerSimulation/World/Players")
 onready var map_state = {
-	"timestamp": 0,
-	"entities": players
+	"t": Time.time,
+	"entities": {}
 }
-
-var debug_line : ImmediateGeometry
-var spawn_position = Vector3(1, 1.5,-2.75)
-
-
-func _process(delta):
-	map_state["timestamp"] = Time.time
-	for id in processing_players:
-		var player = processing_players[id]
-		var node = player["node"]
-		players[id]["position"] = node.transform.origin
+var players_states = {}
+var spawn_position = Vector3(0, 1.5, 0)
 
 
-func move_player_to(peer_id, move_to):
-	processing_players[peer_id]["node"].move_to(move_to)
+
+func _ready():
+	pass
+
+
+func _physics_process(delta):
+	map_state["t"] = Time.time
+	for id in players_states:
+		var player_state = players_states[id]
+		map_state["entities"][id]["p"] = player_state["p"]
+		#for physics later
+		player_state["node"].transform.origin = player_state["p"]
+
+
+func update_player_state(peer_id, state):
+	if players_states.has(peer_id):
+		if players_states[peer_id]["t"] > state["t"]:
+			print("had to return on update because of timestamp being wrong")
+			return
+	else:
+		print("a new player is asking to update. Adding " + str(peer_id) + " to the world")
+		add_player(peer_id)
+		
+	update_player(peer_id, state)
 
 
 func get_map_state():
@@ -31,20 +42,27 @@ func get_map_state():
 
 
 func add_player(peer_id):
-	players[peer_id] = {"position": Vector3.ZERO}
 	var player_node = player_prefab.instance()
-
 	player_node.transform.origin = spawn_position
-	map_navigation.add_child(player_node)
+	map.add_child(player_node)
 	
-	processing_players[peer_id] = {
+	players_states[peer_id] = {
 		"node": player_node,
-		}
+		"p": spawn_position,
+		"t": Time.time
+	}
+	
+	map_state["entities"][peer_id] = {
+		"p": spawn_position
+	}
+
+
+func update_player(peer_id, state):
+	players_states[peer_id]["t"] = state["t"]
+	players_states[peer_id]["p"] = state["p"]
 
 
 func remove_player(peer_id):
-	players.erase(peer_id)
-	processing_players[peer_id]["node"].queue_free()
-	processing_players.erase(peer_id)
-	#erase fomr all AI references as it's cheaper do it this way
-	#than asking for an existing player each time
+	map_state["entities"].erase(peer_id)
+	players_states[peer_id]["node"].queue_free()
+	players_states.erase(peer_id)

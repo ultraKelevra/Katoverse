@@ -1,8 +1,13 @@
 extends ClientNode
 
 
+
 export var _username = ""
 export var _password = ""
+
+signal login_succeeded(token)
+signal login_failed()
+
 
 
 func _ready():
@@ -33,7 +38,3 @@ func try_login(username, password):
 	print("trying loging")
 	start_client()
 	network.connect("connection_succeeded", self, "request_login")
-
-
-signal login_succeeded(token)
-signal login_failed()

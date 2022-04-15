@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://server_client_protocol/ClientNode.gd"
 }, {
-"base": "KinematicBody",
-"class": "PathAgent",
-"language": "GDScript",
-"path": "res://Navigation/PathAgent.gd"
-}, {
 "base": "Node",
 "class": "ServerNode",
 "language": "GDScript",
@@ -26,7 +21,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ClientNode": "",
-"PathAgent": "",
 "ServerNode": ""
 }
 
@@ -43,6 +37,38 @@ AuthenticationClient="*res://Singletons/AuthenticationClient.gd"
 PeerWaitList="*res://Singletons/PeersWaitList.gd"
 WorldServer="*res://Singletons/WorldServer.gd"
 MapController="*res://Singletons/MapController.gd"
+
+[global]
+
+fps=false
+
+[input]
+
+forward={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+back={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [physics]
 

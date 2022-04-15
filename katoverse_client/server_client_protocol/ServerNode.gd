@@ -23,6 +23,9 @@ func start_server():
 	network.connect("connection_failed", self, "_on_peer_disconnected")
 
 
+func get_peer():
+	return custom_multiplayer.get_rpc_sender_id()
+
 func _on_peer_connected(peer_id):
 	emit_signal("peer_connected",peer_id)
 	print("peer " + peer_id + "connected!")

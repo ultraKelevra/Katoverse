@@ -1,9 +1,11 @@
 extends Node
 
 
+
 var peer_wait_list = {}
 var expected_tokens = []
 var expecting_players = []
+
 
 
 func _ready():
@@ -33,11 +35,12 @@ func verify_peer(peer_id, token):
 
 func verify_token(token):
 	for i in peer_wait_list:
-		if(peer_wait_list[i] == token):
+		var peer_token = peer_wait_list[i]
+		if(peer_token == token):
 			WorldServer.authorize_peer(i)
 			peer_wait_list.erase(i)
 			print("token: " + str(token) +"'s peer has already been confirmed and it's login is accepted")
-			break
+			return
 	expected_tokens.append(token)
 	print("token arrived but no suitable peer has connected yet. Going to the wait list")
 
@@ -49,7 +52,6 @@ func token_expiration_check():
 		if(time - token_time > 30):
 			print("token: " + str(expected_tokens[i]) + " has passed 30 seconds expecting for suitable peer\nrtoken erased")
 			expected_tokens.remove(i)
-			
 
 
 func waiting_expiration_check():
@@ -62,7 +64,7 @@ func waiting_expiration_check():
 func peer_expiration_check():
 	var time = OS.get_unix_time()
 	for i in peer_wait_list:
-		var peer_time = i.time
+		var peer_time = peer_wait_list[i]
 		if(time - peer_time > 30):
 			peer_wait_list.erase(i)
 			WorldServer.deny_peer(i)

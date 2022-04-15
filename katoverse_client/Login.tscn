@@ -9,9 +9,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_left = 0.5
@@ -66,8 +63,8 @@ margin_top = 88.0
 margin_right = 485.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 0, 32 )
-custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "PASSWORD"
 clip_text = true
 
@@ -93,9 +90,9 @@ margin_top = 212.0
 margin_right = 485.0
 margin_bottom = 276.0
 rect_min_size = Vector2( 0, 64 )
-custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_disabled = Color( 0.686275, 0.686275, 0.686275, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "ENTER"
 
 [node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
@@ -109,9 +106,9 @@ margin_top = 316.0
 margin_right = 485.0
 margin_bottom = 380.0
 rect_min_size = Vector2( 0, 64 )
-custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_disabled = Color( 0.686275, 0.686275, 0.686275, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "CREATE ACCOUNT"
 
 [connection signal="button_down" from="NinePatchRect/VBoxContainer/btn_login" to="." method="try_login"]
